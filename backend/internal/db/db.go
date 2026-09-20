@@ -8,6 +8,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -16,8 +17,11 @@ func Connect(ctx context.Context, databaseURL string) (*pgxpool.Pool, error) {
 	if err != nil {
 		return nil, err
 	}
-	cfg.MaxConns = 20
-	cfg.MinConns = 2
+	// Supabase transaction pooler (PgBouncer) does not support prepared
+	// statements across checkouts — use simple protocol to avoid 42P05.
+	cfg.ConnConfig.DefaultQueryExecMode = pgx.QueryExecModeSimpleProtocol
+	cfg.MaxConns = 10
+	cfg.MinConns = 0
 	cfg.MaxConnLifetime = time.Hour
 
 	pool, err := pgxpool.NewWithConfig(ctx, cfg)
