@@ -1,0 +1,49 @@
+# Fly.io — Human Conversation API
+# Deploy from backend/:  fly launch --copy-config --no-deploy   then  fly deploy
+#
+# App name is set on first `fly launch`. Replace if you rename.
+
+app = 'human-conversation-api'
+primary_region = 'bom'
+
+[build]
+  dockerfile = 'Dockerfile'
+
+[env]
+  HTTP_ADDR = ':8081'
+  DEV_AUTH = 'false'
+  AUTO_APPROVE_LISTENERS = 'false'
+  # Open Relay free TURN (override with `fly secrets` if you use Metered API keys)
+  STUN_URLS = 'stun:stun.l.google.com:19302,stun:openrelay.metered.ca:80'
+  TURN_URLS = 'turn:openrelay.metered.ca:80,turn:openrelay.metered.ca:443,turns:openrelay.metered.ca:443'
+  TURN_USERNAME = 'openrelayproject'
+  TURN_PASSWORD = 'openrelayproject'
+  TURN_PUBLIC_HOST = ''
+  MEDIA_GRACE_MS = '2500'
+  ACCEPT_TIMEOUT_SEC = '60'
+  LEASE_TTL_SEC = '30'
+  HEARTBEAT_SWEEP_SEC = '5'
+
+[http_service]
+  internal_port = 8081
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+  [http_service.concurrency]
+    type = 'connections'
+    hard_limit = 200
+    soft_limit = 150
+
+  [[http_service.checks]]
+    interval = '15s'
+    timeout = '5s'
+    grace_period = '30s'
+    method = 'GET'
+    path = '/health'
+
+[[vm]]
+  size = 'shared-cpu-1x'
+  memory = '256mb'

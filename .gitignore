@@ -1,0 +1,14 @@
+node_modules/
+.expo/
+dist/
+build/
+.env
+.env.local
+.env.prod
+infrastructure/.env.prod
+*.log
+.DS_Store
+backend/bin/
+admin/dist/
+coverage/
+vendor/

@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --color-bg: #FAF8F5;
+  --color-bg-dark: #111110;
+  --color-surface: #F2EFE9;
+  --color-surface-dark: #1C1B19;
+  --color-border: #E4E0D9;
+  --color-border-dark: #2A2926;
+  --color-ink: #1A1714;
+  --color-ink-dark: #F0EDE8;
+  --color-muted: #9C9590;
+  --color-accent: #C4622D;
+  --color-accent-light: #F5E8DF;
+  --color-green: #4A9B6F;
+  --color-green-light: #E0F2EB;
+  --color-red: #C44040;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #root {
+  height: 100%;
+  background: #111110;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.6; }
+}
+
+@keyframes pulse-ring2 {
+  0% { transform: scale(0.9); opacity: 0.4; }
+  50% { transform: scale(1.1); opacity: 0.15; }
+  100% { transform: scale(0.9); opacity: 0.4; }
+}
+
+@keyframes speaking-wave {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out forwards;
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.4s ease-in-out infinite;
+}
+
+.pulse-ring2 {
+  animation: pulse-ring2 2.4s ease-in-out infinite 0.6s;
+}
+
+.wave-bar {
+  animation: speaking-wave 0.8s ease-in-out infinite;
+}
+
+.wave-bar:nth-child(1) { animation-delay: 0s; }
+.wave-bar:nth-child(2) { animation-delay: 0.1s; }
+.wave-bar:nth-child(3) { animation-delay: 0.2s; }
+.wave-bar:nth-child(4) { animation-delay: 0.1s; }
+.wave-bar:nth-child(5) { animation-delay: 0s; }
+
+.dot-bounce:nth-child(1) { animation: dot-bounce 1.4s ease-in-out infinite 0s; }
+.dot-bounce:nth-child(2) { animation: dot-bounce 1.4s ease-in-out infinite 0.2s; }
+.dot-bounce:nth-child(3) { animation: dot-bounce 1.4s ease-in-out infinite 0.4s; }

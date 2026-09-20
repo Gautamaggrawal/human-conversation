@@ -1,0 +1,49 @@
+# Render Blueprint — Human Conversation API
+# https://render.com/docs/blueprint-spec
+#
+# Dashboard: New → Blueprint → connect this repo
+# or: New → Web Service → root directory `backend`
+
+services:
+  - type: web
+    name: human-conversation-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: singapore
+    healthCheckPath: /health
+    envVars:
+      - key: HTTP_ADDR
+        value: ":8081"
+      - key: DEV_AUTH
+        value: "false"
+      - key: AUTO_APPROVE_LISTENERS
+        value: "false"
+      - key: STUN_URLS
+        value: "stun:stun.l.google.com:19302,stun:openrelay.metered.ca:80"
+      - key: TURN_URLS
+        value: "turn:openrelay.metered.ca:80,turn:openrelay.metered.ca:443,turns:openrelay.metered.ca:443"
+      - key: TURN_USERNAME
+        value: openrelayproject
+      - key: TURN_PASSWORD
+        value: openrelayproject
+      - key: TURN_PUBLIC_HOST
+        value: ""
+      - key: MEDIA_GRACE_MS
+        value: "2500"
+      - key: ACCEPT_TIMEOUT_SEC
+        value: "60"
+      - key: LEASE_TTL_SEC
+        value: "30"
+      - key: HEARTBEAT_SWEEP_SEC
+        value: "5"
+      # Set these in the Render dashboard (Secrets) — do not commit real values
+      - key: DATABASE_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+      - key: ADMIN_API_KEY
+        sync: false

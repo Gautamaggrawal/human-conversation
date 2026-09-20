@@ -1,0 +1,38 @@
+{
+  "name": "human-conversation",
+  "displayName": "Human Conversation",
+  "expo": {
+    "name": "Human Conversation",
+    "slug": "human-conversation",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0f1419"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "app.humanconversation",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Microphone is required for audio conversations."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0f1419",
+        "foregroundImage": "./assets/android-icon-foreground.png"
+      },
+      "permissions": ["RECORD_AUDIO", "MODIFY_AUDIO_SETTINGS"],
+      "package": "app.humanconversation"
+    },
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "note": "Use a custom Expo dev client for react-native-webrtc (not Expo Go)."
+      }
+    }
+  }
+}
