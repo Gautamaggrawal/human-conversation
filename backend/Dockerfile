@@ -9,7 +9,7 @@ FROM alpine:3.20
 RUN apk add --no-cache ca-certificates
 WORKDIR /app
 COPY --from=build /server /app/server
-COPY migrations /app/migrations
+COPY --from=build /src/migrations /app/migrations
 ENV MIGRATIONS_DIR=/app/migrations
 EXPOSE 8081
 CMD ["/app/server"]
