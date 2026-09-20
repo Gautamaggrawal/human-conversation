@@ -970,7 +970,7 @@ function FindingScreen({
     let cancelled = false
     ;(async () => {
       try {
-        await ensureCredits(100)
+        await ensureCredits(600)
         if (cancelled) return
         await signaling.connect()
         if (cancelled) return
@@ -2284,7 +2284,11 @@ export default function App() {
                 ? 'Nobody is available right now. Open another browser as a listener, or try again.'
                 : findError === 'NOT_AUTHENTICATED'
                   ? 'Please log in again.'
-                  : `Couldn’t connect (${findError}). Is the backend running on :8081?`}
+                  : findError === 'INSUFFICIENT_CREDITS'
+                    ? 'Not enough credits to start a call. Try Talk now again to top up (dev purchase).'
+                    : findError === 'CONNECTION_ERROR'
+                      ? 'Couldn’t reach the server. Check your connection and try again.'
+                      : `Couldn’t connect (${findError}). Try again in a moment.`}
               <button className="block mx-auto mt-2 font-semibold" onClick={() => setFindError('')}>Dismiss</button>
             </div>
           )}

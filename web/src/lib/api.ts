@@ -156,9 +156,10 @@ export async function ensureCredits(min = 100) {
   if (!token) throw new Error('not authenticated');
   const w = (await api('/wallet')) as { available: number };
   if ((w.available ?? 0) < min) {
+    // Open-ended calls soft-hold ~60 min × 10 credits = 600.
     await api('/wallet/purchase', {
       method: 'POST',
-      body: JSON.stringify({ credits: Math.max(500, min) }),
+      body: JSON.stringify({ credits: Math.max(1000, min) }),
     });
   }
 }
