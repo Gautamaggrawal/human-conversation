@@ -45,6 +45,7 @@ Use Supabase DB + free TURN (Open Relay) + free API/web hosts —
 see [docs/DEPLOY_FREE.md](docs/DEPLOY_FREE.md).
 
 **API on Render (free):** [docs/DEPLOY_RENDER.md](docs/DEPLOY_RENDER.md) (`render.yaml`).  
+**Web on GitHub Pages:** [docs/DEPLOY_PAGES.md](docs/DEPLOY_PAGES.md).  
 **API on Fly.io:** [docs/DEPLOY_FLY.md](docs/DEPLOY_FLY.md) (`backend/fly.toml`).
 
 

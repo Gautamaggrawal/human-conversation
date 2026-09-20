@@ -4,6 +4,8 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
 
 export default defineConfig({
+  // GitHub Pages project site: https://user.github.io/human-conversation/
+  base: process.env.VITE_BASE || '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
