@@ -28,7 +28,7 @@
 #
 # 1. New → Web Service → connect repo
 # 2. Settings:
-#      Root Directory: backend
+#      Root Directory: (leave EMPTY)
 #      Runtime: Docker
 #      Dockerfile Path: ./Dockerfile
 #      Instance type: Free

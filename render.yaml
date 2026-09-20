@@ -1,17 +1,16 @@
 # Render Blueprint — Human Conversation API
 # https://render.com/docs/blueprint-spec
 #
-# Dashboard: New → Blueprint → connect this repo
-# or: New → Web Service → root directory `backend`
+# Build context = repository root (uses ./Dockerfile).
 
 services:
   - type: web
     name: human-conversation-api
     runtime: docker
-    rootDir: backend
-    dockerfilePath: ./Dockerfile
     plan: free
     region: singapore
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     healthCheckPath: /health
     envVars:
       - key: HTTP_ADDR
@@ -38,7 +37,6 @@ services:
         value: "30"
       - key: HEARTBEAT_SWEEP_SEC
         value: "5"
-      # Set these in the Render dashboard (Secrets) — do not commit real values
       - key: DATABASE_URL
         sync: false
       - key: SUPABASE_URL
